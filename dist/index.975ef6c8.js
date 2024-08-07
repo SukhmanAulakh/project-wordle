@@ -27243,6 +27243,9 @@ var _utils = require("../../utils");
 var _data = require("../../data");
 var _guessInput = require("../GuessInput/GuessInput");
 var _guessInputDefault = parcelHelpers.interopDefault(_guessInput);
+var _guessList = require("../GuessList/GuessList");
+var _guessListDefault = parcelHelpers.interopDefault(_guessList);
+var _s = $RefreshSig$();
 // Pick a random word on every pageload.
 const answer = (0, _utils.sample)((0, _data.WORDS));
 // To make debugging easier, we'll log the solution in the console.
@@ -27250,14 +27253,39 @@ console.info({
     answer
 });
 function Game() {
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _guessInputDefault.default), {
-        answer: answer
-    }, void 0, false, {
-        fileName: "src/components/Game/Game.js",
-        lineNumber: 13,
-        columnNumber: 10
-    }, this);
+    _s();
+    const [guesses, setGuesses] = (0, _reactDefault.default).useState([]);
+    function handleAddGuess(guess) {
+        const newGuess = guess;
+        const nextGuesses = [
+            ...guesses,
+            newGuess
+        ];
+        setGuesses(nextGuesses);
+        console.log(guesses);
+    }
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _guessListDefault.default), {
+                guesses: guesses
+            }, void 0, false, {
+                fileName: "src/components/Game/Game.js",
+                lineNumber: 26,
+                columnNumber: 5
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _guessInputDefault.default), {
+                answer: answer,
+                guesses: guesses,
+                handleAddGuess: handleAddGuess
+            }, void 0, false, {
+                fileName: "src/components/Game/Game.js",
+                lineNumber: 27,
+                columnNumber: 5
+            }, this)
+        ]
+    }, void 0, true);
 }
+_s(Game, "Xmu9MIMKsuHuTgS7DlmkKPaei+E=");
 _c = Game;
 exports.default = Game;
 var _c;
@@ -27268,25 +27296,7 @@ $RefreshReg$(_c, "Game");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../utils":"en4he","../../data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../GuessInput/GuessInput":"bL9cA"}],"en4he":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "sample", ()=>sample);
-parcelHelpers.export(exports, "range", ()=>range);
-const sample = (arr)=>{
-    return arr[Math.floor(Math.random() * arr.length)];
-};
-const range = (start, end, step = 1)=>{
-    let output = [];
-    if (typeof end === "undefined") {
-        end = start;
-        start = 0;
-    }
-    for(let i = start; i < end; i += step)output.push(i);
-    return output;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react/jsx-dev-runtime":"iTorj","../../utils":"en4he","../../data":"9kapS","../GuessInput/GuessInput":"bL9cA","../GuessList/GuessList":"bCwgj"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -27316,64 +27326,7 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"9kapS":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "WORDS", ()=>WORDS);
-const WORDS = [
-    "AGENT",
-    "WORLD",
-    "ABOUT",
-    "HEART",
-    "WATER",
-    "SIXTY",
-    "BOARD",
-    "MONTH",
-    "MUSIC",
-    "PARTY",
-    "PIANO",
-    "MOUTH",
-    "WOMAN",
-    "SUGAR",
-    "AMBER",
-    "DREAM",
-    "LAUGH",
-    "TIGER",
-    "EARTH",
-    "MONEY",
-    "WORDS",
-    "SMILE",
-    "LEMON",
-    "SOUTH",
-    "AFTER",
-    "STONE",
-    "THING",
-    "LIGHT",
-    "STORY",
-    "POWER",
-    "TODAY",
-    "RANGE",
-    "PEARL",
-    "VENOM",
-    "PROXY",
-    "ROUND",
-    "HOVER",
-    "CANDY",
-    "ABOVE",
-    "PHONE",
-    "OTHER",
-    "SMART",
-    "BLACK",
-    "MAGIC",
-    "FRUIT",
-    "RADIO",
-    "ROYAL",
-    "HONEY",
-    "FLAKE",
-    "SOUND"
-];
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"km3Ru":[function(require,module,exports) {
+},{}],"km3Ru":[function(require,module,exports) {
 "use strict";
 var Refresh = require("7422ead32dcc1e6b");
 function debounce(func, delay) {
@@ -27511,7 +27464,82 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"7422ead32dcc1e6b":"786KC"}],"bL9cA":[function(require,module,exports) {
+},{"7422ead32dcc1e6b":"786KC"}],"en4he":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "sample", ()=>sample);
+parcelHelpers.export(exports, "range", ()=>range);
+const sample = (arr)=>{
+    return arr[Math.floor(Math.random() * arr.length)];
+};
+const range = (start, end, step = 1)=>{
+    let output = [];
+    if (typeof end === "undefined") {
+        end = start;
+        start = 0;
+    }
+    for(let i = start; i < end; i += step)output.push(i);
+    return output;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9kapS":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "WORDS", ()=>WORDS);
+const WORDS = [
+    "AGENT",
+    "WORLD",
+    "ABOUT",
+    "HEART",
+    "WATER",
+    "SIXTY",
+    "BOARD",
+    "MONTH",
+    "MUSIC",
+    "PARTY",
+    "PIANO",
+    "MOUTH",
+    "WOMAN",
+    "SUGAR",
+    "AMBER",
+    "DREAM",
+    "LAUGH",
+    "TIGER",
+    "EARTH",
+    "MONEY",
+    "WORDS",
+    "SMILE",
+    "LEMON",
+    "SOUTH",
+    "AFTER",
+    "STONE",
+    "THING",
+    "LIGHT",
+    "STORY",
+    "POWER",
+    "TODAY",
+    "RANGE",
+    "PEARL",
+    "VENOM",
+    "PROXY",
+    "ROUND",
+    "HOVER",
+    "CANDY",
+    "ABOVE",
+    "PHONE",
+    "OTHER",
+    "SMART",
+    "BLACK",
+    "MAGIC",
+    "FRUIT",
+    "RADIO",
+    "ROYAL",
+    "HONEY",
+    "FLAKE",
+    "SOUND"
+];
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bL9cA":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$b46b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27524,18 +27552,21 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _s = $RefreshSig$();
-function GuessInput({ answer }) {
+function GuessInput({ answer, guesses, handleAddGuess }) {
     _s();
     const [guess, setGuess] = (0, _reactDefault.default).useState("");
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
         className: "guess-input-wrapper",
         onSubmit: (event)=>{
             event.preventDefault();
-            if (guess === answer) console.log("hurray!!!", guess, answer) //What to do if correct answer
-            ;
-            else console.log("nayy!!!", guess, answer);
-            setGuess("") //Reset Guess if Still Need More Attempts
-            ;
+            const finalizedGuess = guess;
+            if (finalizedGuess.length == 5) {
+                if (finalizedGuess === answer) console.log("hurray!!!") //What to do if correct answer
+                ;
+                handleAddGuess(finalizedGuess);
+                setGuess("") //Reset Guess if Still Need More Attempts
+                ;
+            }
         },
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -27543,7 +27574,7 @@ function GuessInput({ answer }) {
                 children: "Enter Guess:"
             }, void 0, false, {
                 fileName: "src/components/GuessInput/GuessInput.js",
-                lineNumber: 18,
+                lineNumber: 22,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -27555,7 +27586,7 @@ function GuessInput({ answer }) {
                 onChange: (event)=>setGuess(event.target.value.toUpperCase())
             }, void 0, false, {
                 fileName: "src/components/GuessInput/GuessInput.js",
-                lineNumber: 21,
+                lineNumber: 25,
                 columnNumber: 7
             }, this)
         ]
@@ -27572,6 +27603,48 @@ var _c;
 $RefreshReg$(_c, "GuessInput");
 
   $parcel$ReactRefreshHelpers$b46b.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bCwgj":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$1718 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$1718.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+function GuessList({ guesses }) {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "guess-results",
+        id: "guess-list",
+        children: guesses.map((guess)=>{
+            return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                className: "guess",
+                children: guess
+            }, Math.random(), false, {
+                fileName: "src/components/GuessList/GuessList.js",
+                lineNumber: 8,
+                columnNumber: 9
+            }, this);
+        })
+    }, void 0, false, {
+        fileName: "src/components/GuessList/GuessList.js",
+        lineNumber: 5,
+        columnNumber: 5
+    }, this);
+}
+_c = GuessList;
+exports.default = GuessList;
+var _c;
+$RefreshReg$(_c, "GuessList");
+
+  $parcel$ReactRefreshHelpers$1718.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;

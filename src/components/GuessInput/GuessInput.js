@@ -1,6 +1,6 @@
 import React from 'react';
 
-function GuessInput({answer}) {
+function GuessInput({answer,guesses,handleAddGuess}) {
 
   const [guess,setGuess] = React.useState('')
 
@@ -9,11 +9,15 @@ function GuessInput({answer}) {
       onSubmit={(event) => {
         event.preventDefault();
 
-        if(guess===answer){
-          console.log("hurray!!!",guess,answer) //What to do if correct answer
+        const finalizedGuess = guess;
+
+      if(finalizedGuess.length==5){
+        if(finalizedGuess===answer){
+          console.log("hurray!!!") //What to do if correct answer
         }
-        else{console.log("nayy!!!",guess,answer)}
+        handleAddGuess(finalizedGuess);
         setGuess('') //Reset Guess if Still Need More Attempts
+      }
     }}>
       <label htmlFor="guess-input">
         Enter Guess:
