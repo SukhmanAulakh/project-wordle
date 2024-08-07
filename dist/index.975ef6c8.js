@@ -27243,9 +27243,12 @@ var _utils = require("../../utils");
 var _data = require("../../data");
 var _guessInput = require("../GuessInput/GuessInput");
 var _guessInputDefault = parcelHelpers.interopDefault(_guessInput);
+<<<<<<< HEAD
 var _guessList = require("../GuessList/GuessList");
 var _guessListDefault = parcelHelpers.interopDefault(_guessList);
 var _s = $RefreshSig$();
+=======
+>>>>>>> 1130941d7ce6b2124f841d282c3b24b27eee12de
 // Pick a random word on every pageload.
 const answer = (0, _utils.sample)((0, _data.WORDS));
 // To make debugging easier, we'll log the solution in the console.
@@ -27253,6 +27256,7 @@ console.info({
     answer
 });
 function Game() {
+<<<<<<< HEAD
     _s();
     const [guesses, setGuesses] = (0, _reactDefault.default).useState([]);
     function handleAddGuess(guess) {
@@ -27286,6 +27290,16 @@ function Game() {
     }, void 0, true);
 }
 _s(Game, "Xmu9MIMKsuHuTgS7DlmkKPaei+E=");
+=======
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _guessInputDefault.default), {
+        answer: answer
+    }, void 0, false, {
+        fileName: "src/components/Game/Game.js",
+        lineNumber: 13,
+        columnNumber: 10
+    }, this);
+}
+>>>>>>> 1130941d7ce6b2124f841d282c3b24b27eee12de
 _c = Game;
 exports.default = Game;
 var _c;
@@ -27296,7 +27310,29 @@ $RefreshReg$(_c, "Game");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
+<<<<<<< HEAD
 },{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react/jsx-dev-runtime":"iTorj","../../utils":"en4he","../../data":"9kapS","../GuessInput/GuessInput":"bL9cA","../GuessList/GuessList":"bCwgj"}],"gkKU3":[function(require,module,exports) {
+=======
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../utils":"en4he","../../data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../GuessInput/GuessInput":"bL9cA"}],"en4he":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "sample", ()=>sample);
+parcelHelpers.export(exports, "range", ()=>range);
+const sample = (arr)=>{
+    return arr[Math.floor(Math.random() * arr.length)];
+};
+const range = (start, end, step = 1)=>{
+    let output = [];
+    if (typeof end === "undefined") {
+        end = start;
+        start = 0;
+    }
+    for(let i = start; i < end; i += step)output.push(i);
+    return output;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+>>>>>>> 1130941d7ce6b2124f841d282c3b24b27eee12de
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -27326,7 +27362,68 @@ exports.export = function(dest, destName, get) {
     });
 };
 
+<<<<<<< HEAD
 },{}],"km3Ru":[function(require,module,exports) {
+=======
+},{}],"9kapS":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "WORDS", ()=>WORDS);
+const WORDS = [
+    "AGENT",
+    "WORLD",
+    "ABOUT",
+    "HEART",
+    "WATER",
+    "SIXTY",
+    "BOARD",
+    "MONTH",
+    "MUSIC",
+    "PARTY",
+    "PIANO",
+    "MOUTH",
+    "WOMAN",
+    "SUGAR",
+    "AMBER",
+    "DREAM",
+    "LAUGH",
+    "TIGER",
+    "EARTH",
+    "MONEY",
+    "WORDS",
+    "SMILE",
+    "LEMON",
+    "SOUTH",
+    "AFTER",
+    "STONE",
+    "THING",
+    "LIGHT",
+    "STORY",
+    "POWER",
+    "TODAY",
+    "RANGE",
+    "PEARL",
+    "VENOM",
+    "PROXY",
+    "ROUND",
+    "HOVER",
+    "CANDY",
+    "ABOVE",
+    "PHONE",
+    "OTHER",
+    "SMART",
+    "BLACK",
+    "MAGIC",
+    "FRUIT",
+    "RADIO",
+    "ROYAL",
+    "HONEY",
+    "FLAKE",
+    "SOUND"
+];
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"km3Ru":[function(require,module,exports) {
+>>>>>>> 1130941d7ce6b2124f841d282c3b24b27eee12de
 "use strict";
 var Refresh = require("7422ead32dcc1e6b");
 function debounce(func, delay) {
@@ -27464,6 +27561,7 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
+<<<<<<< HEAD
 },{"7422ead32dcc1e6b":"786KC"}],"en4he":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -27540,6 +27638,9 @@ const WORDS = [
 ];
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bL9cA":[function(require,module,exports) {
+=======
+},{"7422ead32dcc1e6b":"786KC"}],"bL9cA":[function(require,module,exports) {
+>>>>>>> 1130941d7ce6b2124f841d282c3b24b27eee12de
 var $parcel$ReactRefreshHelpers$b46b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27552,13 +27653,18 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _s = $RefreshSig$();
+<<<<<<< HEAD
 function GuessInput({ answer, guesses, handleAddGuess }) {
+=======
+function GuessInput({ answer }) {
+>>>>>>> 1130941d7ce6b2124f841d282c3b24b27eee12de
     _s();
     const [guess, setGuess] = (0, _reactDefault.default).useState("");
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
         className: "guess-input-wrapper",
         onSubmit: (event)=>{
             event.preventDefault();
+<<<<<<< HEAD
             const finalizedGuess = guess;
             if (finalizedGuess.length == 5) {
                 if (finalizedGuess === answer) console.log("hurray!!!") //What to do if correct answer
@@ -27567,6 +27673,13 @@ function GuessInput({ answer, guesses, handleAddGuess }) {
                 setGuess("") //Reset Guess if Still Need More Attempts
                 ;
             }
+=======
+            if (guess === answer) console.log("hurray!!!", guess, answer) //What to do if correct answer
+            ;
+            else console.log("nayy!!!", guess, answer);
+            setGuess("") //Reset Guess if Still Need More Attempts
+            ;
+>>>>>>> 1130941d7ce6b2124f841d282c3b24b27eee12de
         },
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -27574,7 +27687,11 @@ function GuessInput({ answer, guesses, handleAddGuess }) {
                 children: "Enter Guess:"
             }, void 0, false, {
                 fileName: "src/components/GuessInput/GuessInput.js",
+<<<<<<< HEAD
                 lineNumber: 22,
+=======
+                lineNumber: 18,
+>>>>>>> 1130941d7ce6b2124f841d282c3b24b27eee12de
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -27586,7 +27703,11 @@ function GuessInput({ answer, guesses, handleAddGuess }) {
                 onChange: (event)=>setGuess(event.target.value.toUpperCase())
             }, void 0, false, {
                 fileName: "src/components/GuessInput/GuessInput.js",
+<<<<<<< HEAD
                 lineNumber: 25,
+=======
+                lineNumber: 21,
+>>>>>>> 1130941d7ce6b2124f841d282c3b24b27eee12de
                 columnNumber: 7
             }, this)
         ]
@@ -27607,6 +27728,7 @@ $RefreshReg$(_c, "GuessInput");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
+<<<<<<< HEAD
 },{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bCwgj":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$1718 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -27649,6 +27771,8 @@ $RefreshReg$(_c, "GuessList");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
+=======
+>>>>>>> 1130941d7ce6b2124f841d282c3b24b27eee12de
 },{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"cxSZo":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
