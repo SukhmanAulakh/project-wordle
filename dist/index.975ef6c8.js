@@ -27322,7 +27322,7 @@ $RefreshReg$(_c, "Game");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../utils":"en4he","../../data":"9kapS","../GuessInput/GuessInput":"bL9cA","../GuessList/GuessList":"bCwgj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../constants":"3huJa","../Banner/Banner":"dRLMg"}],"en4he":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../utils":"en4he","../../data":"9kapS","../../constants":"3huJa","../GuessInput/GuessInput":"bL9cA","../GuessList/GuessList":"bCwgj","../Banner/Banner":"dRLMg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"en4he":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "sample", ()=>sample);
@@ -27426,6 +27426,12 @@ const WORDS = [
     "FLAKE",
     "SOUND"
 ];
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3huJa":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "NUM_OF_GUESSES_ALLOWED", ()=>NUM_OF_GUESSES_ALLOWED);
+const NUM_OF_GUESSES_ALLOWED = 6;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bL9cA":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$b46b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
@@ -27676,7 +27682,7 @@ $RefreshReg$(_c, "GuessList");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../Guess/Guess":"u6UxK"}],"u6UxK":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../Guess/Guess":"u6UxK","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"u6UxK":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$424d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27744,7 +27750,7 @@ $RefreshReg$(_c, "Guess");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","/src/game-helpers.js":"dWwK5"}],"dWwK5":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","/src/game-helpers.js":"dWwK5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"dWwK5":[function(require,module,exports) {
 /**
  * Thanks to Github user dylano for supplying a more-accurate
  * solving algorithm!
@@ -27785,12 +27791,6 @@ function checkGuess(guess, answer) {
     }
     return result;
 }
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3huJa":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "NUM_OF_GUESSES_ALLOWED", ()=>NUM_OF_GUESSES_ALLOWED);
-const NUM_OF_GUESSES_ALLOWED = 6;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dRLMg":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$9f4a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
