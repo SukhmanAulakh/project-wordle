@@ -23,7 +23,7 @@ function Guess({guess,answer}) {
   }
   else
   {
-    const guessArr = checkGuess(guess,answer);
+    const guessArr = checkGuess(guess,answer.answer);
     return(
     <p className="guess">
       {guessArr.map((character)=>{

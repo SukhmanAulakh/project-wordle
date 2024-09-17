@@ -7,10 +7,26 @@ import GuessInput from '../GuessInput/GuessInput';
 import GuessList from '../GuessList/GuessList';
 import Banner from '../Banner/Banner';
 
-// Pick a random word on every pageload.
-const answer = sample(WORDS);
+// Retrieve Word From Backend
+const ENDPOINT = "http://127.0.0.1:5000/word"
+
+async function generateWord(endpoint){
+
+  const response = await fetch(endpoint,{
+    method: 'GET'
+  })
+  const json = await response.json()
+  return (json)
+}
+const genWord= (generateWord(ENDPOINT))
+if(genWord=="fulfilled"){
+
+}
+console.log(genWord)
+
+const falseanswer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
-console.info({answer});
+console.info({falseanswer});
 
 function emptyGuessesArr()
 {
@@ -31,6 +47,16 @@ function Game() {
   const [attempts,setAttempts] = React.useState(0); 
   const [isCorrect,setIsCorrect] = React.useState(false);
   const [isGameOver,setIsGameOver] = React.useState(false);
+  const [answer,setAnswer] = React.useState("");
+
+  React.useEffect(() => {
+    async function fetchWord() {
+      const ans = await generateWord(ENDPOINT);
+      setAnswer(ans);
+      console.log(ans);
+    }
+    fetchWord()
+  }, []);
 
   function handleAddGuess(guess){
     const newGuess= guess;

@@ -27249,11 +27249,22 @@ var _guessListDefault = parcelHelpers.interopDefault(_guessList);
 var _banner = require("../Banner/Banner");
 var _bannerDefault = parcelHelpers.interopDefault(_banner);
 var _s = $RefreshSig$();
-// Pick a random word on every pageload.
-const answer = (0, _utils.sample)((0, _data.WORDS));
+// Retrieve Word From Backend
+const ENDPOINT = "http://127.0.0.1:5000/word";
+async function generateWord(endpoint) {
+    const response = await fetch(endpoint, {
+        method: "GET"
+    });
+    const json = await response.json();
+    return json;
+}
+const genWord = generateWord(ENDPOINT);
+genWord;
+console.log(genWord);
+const falseanswer = (0, _utils.sample)((0, _data.WORDS));
 // To make debugging easier, we'll log the solution in the console.
 console.info({
-    answer
+    falseanswer
 });
 function emptyGuessesArr() {
     let arr = [];
@@ -27269,6 +27280,15 @@ function Game() {
     const [attempts, setAttempts] = (0, _reactDefault.default).useState(0);
     const [isCorrect, setIsCorrect] = (0, _reactDefault.default).useState(false);
     const [isGameOver, setIsGameOver] = (0, _reactDefault.default).useState(false);
+    const [answer, setAnswer] = (0, _reactDefault.default).useState("");
+    (0, _reactDefault.default).useEffect(()=>{
+        async function fetchWord() {
+            const ans = await generateWord(ENDPOINT);
+            setAnswer(ans);
+            console.log(ans);
+        }
+        fetchWord();
+    }, []);
     function handleAddGuess(guess) {
         const newGuess = guess;
         var nextGuesses = new Array(6);
@@ -27286,7 +27306,7 @@ function Game() {
                 answer: answer
             }, void 0, false, {
                 fileName: "src/components/Game/Game.js",
-                lineNumber: 62,
+                lineNumber: 88,
                 columnNumber: 5
             }, this),
             !isCorrect && !isGameOver && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _guessInputDefault.default), {
@@ -27296,7 +27316,7 @@ function Game() {
                 setIsCorrect: setIsCorrect
             }, void 0, false, {
                 fileName: "src/components/Game/Game.js",
-                lineNumber: 64,
+                lineNumber: 90,
                 columnNumber: 5
             }, this),
             (isCorrect || isGameOver) && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bannerDefault.default), {
@@ -27305,13 +27325,13 @@ function Game() {
                 answer: answer
             }, void 0, false, {
                 fileName: "src/components/Game/Game.js",
-                lineNumber: 67,
+                lineNumber: 93,
                 columnNumber: 5
             }, this)
         ]
     }, void 0, true);
 }
-_s(Game, "by9RBEewMjy0YUY6Sibrc3BuYZg=");
+_s(Game, "mxVfvEYSTu+ou9N1SrmVTX85miI=");
 _c = Game;
 exports.default = Game;
 var _c;
@@ -27717,7 +27737,7 @@ function Guess({ guess, answer }) {
             columnNumber: 5
         }, this);
     } else {
-        const guessArr = (0, _gameHelpersJs.checkGuess)(guess, answer);
+        const guessArr = (0, _gameHelpersJs.checkGuess)(guess, answer.answer);
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
             className: "guess",
             children: guessArr.map((character)=>{
@@ -27762,6 +27782,7 @@ function checkGuess(guess, answer) {
     // dealt with this character (it's correct, or misplaced).
     const SOLVED_CHAR = "\u2713";
     if (!guess) return null;
+    console.log(answer);
     const guessChars = guess.toUpperCase().split("");
     const answerChars = answer.split("");
     const result = [];
