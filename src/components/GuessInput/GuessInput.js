@@ -21,7 +21,7 @@ async function checkWord(endpoint,word){
 function GuessInput({answer,handleAddGuess,isCorrect,setIsCorrect}) {
 
   const [guess,setGuess] = React.useState('')
-  const [isValidWord,setIsValidWord] = React.useState(false)
+  const [isValidWord,setIsValidWord] = React.useState("Empty")
 
   React.useEffect(() => {
     async function fetchWord(word) {

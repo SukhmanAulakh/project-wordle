@@ -27254,7 +27254,7 @@ var _newWordButton = require("../NewWordButton");
 var _newWordButtonDefault = parcelHelpers.interopDefault(_newWordButton);
 var _s = $RefreshSig$();
 // Retrieve Word From Backend
-const ENDPOINT = "http://127.0.0.1:5000/word";
+const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word";
 async function generateWord(endpoint) {
     const response = await fetch(endpoint, {
         method: "GET"
@@ -27476,7 +27476,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _s = $RefreshSig$();
-const ENDPOINT = "http://127.0.0.1:5000/word?word=";
+const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word?word=";
 async function checkWord(endpoint, word) {
     if (typeof word == "string") word = word.toLowerCase();
     url = endpoint + word;
@@ -27489,7 +27489,7 @@ async function checkWord(endpoint, word) {
 function GuessInput({ answer, handleAddGuess, isCorrect, setIsCorrect }) {
     _s();
     const [guess, setGuess] = (0, _reactDefault.default).useState("");
-    const [isValidWord, setIsValidWord] = (0, _reactDefault.default).useState(false);
+    const [isValidWord, setIsValidWord] = (0, _reactDefault.default).useState("Check");
     (0, _reactDefault.default).useEffect(()=>{
         async function fetchWord(word) {
             const valid = await checkWord(ENDPOINT, word);
@@ -27555,7 +27555,7 @@ function GuessInput({ answer, handleAddGuess, isCorrect, setIsCorrect }) {
         columnNumber: 7
     }, this);
 }
-_s(GuessInput, "vugx2c5/CBNo07sVkxtDGDIJEEc=");
+_s(GuessInput, "sVU9Tj8WbhmdTyes5cDggMJFhpA=");
 _c = GuessInput;
 exports.default = GuessInput;
 var _c;
