@@ -1,12 +1,11 @@
 import Game from '../Game';
 import Header from '../Header';
-import NewWordButton from '../NewWordButton';
+import toast, {Toaster} from 'react-hot-toast';
 
 function App() {
   return (
     <div className="wrapper">
       <Header />
-
       <div className="game-wrapper">
         <Game />
       </div>

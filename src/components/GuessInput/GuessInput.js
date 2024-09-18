@@ -1,4 +1,5 @@
 import React from 'react';
+import toast, {Toaster} from 'react-hot-toast';
 
 //Check to See If Guess is A Word in the Backend
 async function checkWord(word){
@@ -40,6 +41,7 @@ function GuessInput({answer,handleAddGuess,setIsCorrect}) {
       {
         //Change State Variable to be in an Empty State for Logic
         setIsValidWord("Empty")
+        toast.error('Invalid Word!')
       }
 
     }
@@ -53,10 +55,10 @@ function GuessInput({answer,handleAddGuess,setIsCorrect}) {
   }, [isValidWord]);
 
   return (
-      <form className="guess-input-wrapper"
-        onSubmit={(event) => {
-          event.preventDefault();
-          const finalizedGuess = guess;
+    <form className="guess-input-wrapper"
+      onSubmit={(event) => {
+        event.preventDefault();
+        const finalizedGuess = guess;
 
         if(finalizedGuess.length==5){
 
@@ -65,28 +67,29 @@ function GuessInput({answer,handleAddGuess,setIsCorrect}) {
           if(finalizedGuess===answer){
             setIsCorrect(true);
             handleAddGuess(finalizedGuess);
-            console.log("guess input says you are correct!")
           }
           if(isValidWord=="Valid"){
-            console.log("guess input says you are wrong!")
+
             handleAddGuess(finalizedGuess);
             setGuess('') //Reset Guess if Still Have More Attempts and Not correct
             setIsValidWord("Empty")
           }
         }
       }}>
-        <label htmlFor="guess-input">
-          Enter Guess:
-        </label>
-        <input 
-          id="guess-input" 
-          type="text"
-          maxLength="5"
-          minLength="5" 
-          value={guess} 
-          onChange={(event)=>(setGuess(event.target.value.toUpperCase()))}
-        />
-      </form>
+
+      <label htmlFor="guess-input">
+        Enter Guess:
+      </label>
+      
+      <input 
+        id="guess-input" 
+        type="text"
+        maxLength="5"
+        minLength="5" 
+        value={guess} 
+        onChange={(event)=>(setGuess(event.target.value.toUpperCase()))}
+      />
+    </form>
   );
 }
 
