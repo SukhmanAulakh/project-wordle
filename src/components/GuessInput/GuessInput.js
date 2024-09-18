@@ -2,13 +2,13 @@ import React from 'react';
 
 const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word?word="
 
-async function checkWord(endpoint,word){
+async function checkWord(word){
 
   if (typeof(word)=="string"){
     word =word.toLowerCase()
   }
 
-  url = endpoint+word
+  url= ENDPOINT+word
 
   const response = await fetch(url,{
     method: 'GET'
@@ -18,14 +18,14 @@ async function checkWord(endpoint,word){
 }
 
 
-function GuessInput({answer,handleAddGuess,isCorrect,setIsCorrect}) {
+function GuessInput({answer,handleAddGuess,setIsCorrect}) {
 
   const [guess,setGuess] = React.useState('')
   const [isValidWord,setIsValidWord] = React.useState("Empty")
 
   React.useEffect(() => {
     async function fetchWord(word) {
-      const valid = await checkWord(ENDPOINT,word);
+      const valid = await checkWord(word);
       if(valid.found==="True"){
         setIsValidWord("Valid")
         handleAddGuess(word);
