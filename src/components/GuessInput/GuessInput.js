@@ -33,6 +33,7 @@ function GuessInput({answer,handleAddGuess,setIsCorrect}) {
       if(valid.found==="True"){
         setIsValidWord("Valid")
         handleAddGuess(word);
+        toast.success('Keep Guessing!')
 
         //Reset Guess
         setGuess('')
@@ -40,8 +41,8 @@ function GuessInput({answer,handleAddGuess,setIsCorrect}) {
       else
       {
         //Change State Variable to be in an Empty State for Logic
-        setIsValidWord("Empty")
         toast.error('Invalid Word!')
+        setIsValidWord("Empty")
       }
 
     }
@@ -72,7 +73,6 @@ function GuessInput({answer,handleAddGuess,setIsCorrect}) {
 
             handleAddGuess(finalizedGuess);
             setGuess('') //Reset Guess if Still Have More Attempts and Not correct
-            setIsValidWord("Empty")
           }
         }
       }}>
@@ -80,7 +80,7 @@ function GuessInput({answer,handleAddGuess,setIsCorrect}) {
       <label htmlFor="guess-input">
         Enter Guess:
       </label>
-      
+
       <input 
         id="guess-input" 
         type="text"
