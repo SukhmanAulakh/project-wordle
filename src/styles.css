@@ -21,7 +21,7 @@ html {
   Custom styles
 */
 body {
-  font-family: sans-serif;
+  font-family: Segoe UI;
 }
 
 @media (max-height: 600px) {
@@ -31,13 +31,19 @@ body {
 }
 
 button {
-  margin: 0;
-  padding: 0;
-  border: none;
+  display:flex;
+  margin:auto;
+  margin-top:3%;
+  border: 1px solid var(--color-gray-700);
   background: transparent;
   cursor: pointer;
-  text-align: left;
-  color: inherit;
+  text-align: center;
+  color: var(--color-gray-300);
+  
+}
+
+button:focus-visible{
+  background: var(--color-success);
 }
 
 .wrapper {

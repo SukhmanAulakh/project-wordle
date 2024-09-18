@@ -14,8 +14,9 @@ function GuessInput({answer,handleAddGuess,isCorrect,setIsCorrect}) {
         if(finalizedGuess.length==5){
           if(finalizedGuess===answer){
             setIsCorrect(true);
-            
+            console.log("guess input says you are correct!")
           }
+          console.log("guess input says you are wrong!")
           handleAddGuess(finalizedGuess);
           setGuess('') //Reset Guess if Still Need More Attempts
         }

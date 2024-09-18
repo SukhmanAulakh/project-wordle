@@ -6,6 +6,7 @@ import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 import GuessInput from '../GuessInput/GuessInput';
 import GuessList from '../GuessList/GuessList';
 import Banner from '../Banner/Banner';
+import NewWordButton from '../NewWordButton';
 
 // Retrieve Word From Backend
 const ENDPOINT = "http://127.0.0.1:5000/word"
@@ -52,11 +53,18 @@ function Game() {
   React.useEffect(() => {
     async function fetchWord() {
       const ans = await generateWord(ENDPOINT);
-      setAnswer(ans);
-      console.log(ans);
+      setAnswer(ans.answer);
+      console.log(ans.answer);
     }
     fetchWord()
+    return(console.log("completed"))
   }, []);
+
+  React.useEffect(() => {
+    if(isCorrect){
+      (console.log("woohoo"))
+    }
+  }, [isCorrect]);
 
   function handleAddGuess(guess){
     const newGuess= guess;
@@ -85,6 +93,9 @@ function Game() {
   
   return(
   <>
+    {(isCorrect||isGameOver)&&
+      <NewWordButton>Generate New Word!</NewWordButton>
+    }
     <GuessList guesses={guesses} answer={answer}/>
     {(!isCorrect&&!isGameOver)&&
     <GuessInput answer={answer} handleAddGuess={handleAddGuess} isCorrect={isCorrect} setIsCorrect={setIsCorrect} />

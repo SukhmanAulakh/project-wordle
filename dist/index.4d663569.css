@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: Segoe UI;
 }
 
 @media (height <= 600px) {
@@ -23,13 +23,17 @@ body {
 }
 
 button {
+  border: 1px solid var(--color-gray-700);
   cursor: pointer;
-  text-align: left;
-  color: inherit;
+  text-align: center;
+  color: var(--color-gray-300);
   background: none;
-  border: none;
-  margin: 0;
-  padding: 0;
+  margin: 3% auto auto;
+  display: flex;
+}
+
+button:focus-visible {
+  background: var(--color-success);
 }
 
 .wrapper {

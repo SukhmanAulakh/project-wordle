@@ -27181,31 +27181,33 @@ var _game = require("../Game");
 var _gameDefault = parcelHelpers.interopDefault(_game);
 var _header = require("../Header");
 var _headerDefault = parcelHelpers.interopDefault(_header);
+var _newWordButton = require("../NewWordButton");
+var _newWordButtonDefault = parcelHelpers.interopDefault(_newWordButton);
 function App() {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "wrapper",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _headerDefault.default), {}, void 0, false, {
                 fileName: "src/components/App/App.js",
-                lineNumber: 7,
+                lineNumber: 8,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "game-wrapper",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _gameDefault.default), {}, void 0, false, {
                     fileName: "src/components/App/App.js",
-                    lineNumber: 10,
+                    lineNumber: 11,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/App/App.js",
-                lineNumber: 9,
+                lineNumber: 10,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/App/App.js",
-        lineNumber: 6,
+        lineNumber: 7,
         columnNumber: 5
     }, this);
 }
@@ -27219,7 +27221,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","../Game":"ipYvB","../Header":"cxSZo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"ipYvB":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","../Game":"ipYvB","../Header":"cxSZo","../NewWordButton":"3c354","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"ipYvB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>(0, _gameDefault.default));
@@ -27248,6 +27250,8 @@ var _guessList = require("../GuessList/GuessList");
 var _guessListDefault = parcelHelpers.interopDefault(_guessList);
 var _banner = require("../Banner/Banner");
 var _bannerDefault = parcelHelpers.interopDefault(_banner);
+var _newWordButton = require("../NewWordButton");
+var _newWordButtonDefault = parcelHelpers.interopDefault(_newWordButton);
 var _s = $RefreshSig$();
 // Retrieve Word From Backend
 const ENDPOINT = "http://127.0.0.1:5000/word";
@@ -27284,11 +27288,17 @@ function Game() {
     (0, _reactDefault.default).useEffect(()=>{
         async function fetchWord() {
             const ans = await generateWord(ENDPOINT);
-            setAnswer(ans);
-            console.log(ans);
+            setAnswer(ans.answer);
+            console.log(ans.answer);
         }
         fetchWord();
+        return console.log("completed");
     }, []);
+    (0, _reactDefault.default).useEffect(()=>{
+        if (isCorrect) console.log("woohoo");
+    }, [
+        isCorrect
+    ]);
     function handleAddGuess(guess) {
         const newGuess = guess;
         var nextGuesses = new Array(6);
@@ -27301,12 +27311,19 @@ function Game() {
     }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
+            (isCorrect || isGameOver) && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _newWordButtonDefault.default), {
+                children: "Generate New Word!"
+            }, void 0, false, {
+                fileName: "src/components/Game/Game.js",
+                lineNumber: 97,
+                columnNumber: 7
+            }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _guessListDefault.default), {
                 guesses: guesses,
                 answer: answer
             }, void 0, false, {
                 fileName: "src/components/Game/Game.js",
-                lineNumber: 88,
+                lineNumber: 99,
                 columnNumber: 5
             }, this),
             !isCorrect && !isGameOver && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _guessInputDefault.default), {
@@ -27316,7 +27333,7 @@ function Game() {
                 setIsCorrect: setIsCorrect
             }, void 0, false, {
                 fileName: "src/components/Game/Game.js",
-                lineNumber: 90,
+                lineNumber: 101,
                 columnNumber: 5
             }, this),
             (isCorrect || isGameOver) && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bannerDefault.default), {
@@ -27325,13 +27342,13 @@ function Game() {
                 answer: answer
             }, void 0, false, {
                 fileName: "src/components/Game/Game.js",
-                lineNumber: 93,
+                lineNumber: 104,
                 columnNumber: 5
             }, this)
         ]
     }, void 0, true);
 }
-_s(Game, "mxVfvEYSTu+ou9N1SrmVTX85miI=");
+_s(Game, "xXayaAzfLZZFiJO8bjCoecAGADk=");
 _c = Game;
 exports.default = Game;
 var _c;
@@ -27342,7 +27359,7 @@ $RefreshReg$(_c, "Game");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../utils":"en4he","../../data":"9kapS","../../constants":"3huJa","../GuessInput/GuessInput":"bL9cA","../GuessList/GuessList":"bCwgj","../Banner/Banner":"dRLMg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"en4he":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../utils":"en4he","../../data":"9kapS","../../constants":"3huJa","../GuessInput/GuessInput":"bL9cA","../GuessList/GuessList":"bCwgj","../Banner/Banner":"dRLMg","../NewWordButton":"3c354","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"en4he":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "sample", ()=>sample);
@@ -27475,7 +27492,11 @@ function GuessInput({ answer, handleAddGuess, isCorrect, setIsCorrect }) {
             event.preventDefault();
             const finalizedGuess = guess;
             if (finalizedGuess.length == 5) {
-                if (finalizedGuess === answer) setIsCorrect(true);
+                if (finalizedGuess === answer) {
+                    setIsCorrect(true);
+                    console.log("guess input says you are correct!");
+                }
+                console.log("guess input says you are wrong!");
                 handleAddGuess(finalizedGuess);
                 setGuess("") //Reset Guess if Still Need More Attempts
                 ;
@@ -27487,7 +27508,7 @@ function GuessInput({ answer, handleAddGuess, isCorrect, setIsCorrect }) {
                 children: "Enter Guess:"
             }, void 0, false, {
                 fileName: "src/components/GuessInput/GuessInput.js",
-                lineNumber: 23,
+                lineNumber: 24,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -27499,7 +27520,7 @@ function GuessInput({ answer, handleAddGuess, isCorrect, setIsCorrect }) {
                 onChange: (event)=>setGuess(event.target.value.toUpperCase())
             }, void 0, false, {
                 fileName: "src/components/GuessInput/GuessInput.js",
-                lineNumber: 26,
+                lineNumber: 27,
                 columnNumber: 9
             }, this)
         ]
@@ -27737,7 +27758,7 @@ function Guess({ guess, answer }) {
             columnNumber: 5
         }, this);
     } else {
-        const guessArr = (0, _gameHelpersJs.checkGuess)(guess, answer.answer);
+        const guessArr = (0, _gameHelpersJs.checkGuess)(guess, answer);
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
             className: "guess",
             children: guessArr.map((character)=>{
@@ -27782,7 +27803,7 @@ function checkGuess(guess, answer) {
     // dealt with this character (it's correct, or misplaced).
     const SOLVED_CHAR = "\u2713";
     if (!guess) return null;
-    console.log(answer);
+    console.log(answer, "game helper");
     const guessChars = guess.toUpperCase().split("");
     const answerChars = answer.split("");
     const result = [];
@@ -27840,6 +27861,7 @@ function Banner({ isCorrect, attempts, answer }) {
                 " Got it in",
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
                     children: [
+                        " ",
                         attempts,
                         " guesses"
                     ]
@@ -27890,6 +27912,51 @@ var _c;
 $RefreshReg$(_c, "Banner");
 
   $parcel$ReactRefreshHelpers$9f4a.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"3c354":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>(0, _newWordButtonDefault.default));
+var _newWordButton = require("./NewWordButton");
+parcelHelpers.exportAll(_newWordButton, exports);
+var _newWordButtonDefault = parcelHelpers.interopDefault(_newWordButton);
+
+},{"./NewWordButton":"8ZnDp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8ZnDp":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$d4e6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$d4e6.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+function NewWordButton({ children }) {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+        className: "button",
+        label: "New Word Button",
+        alt: "Button Used For Generating New Word After Game Over",
+        onClick: ()=>{
+            location.reload();
+        },
+        children: children
+    }, void 0, false, {
+        fileName: "src/components/NewWordButton/NewWordButton.js",
+        lineNumber: 6,
+        columnNumber: 5
+    }, this);
+}
+_c = NewWordButton;
+exports.default = NewWordButton;
+var _c;
+$RefreshReg$(_c, "NewWordButton");
+
+  $parcel$ReactRefreshHelpers$d4e6.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;

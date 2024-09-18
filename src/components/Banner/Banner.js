@@ -7,7 +7,7 @@ function Banner({isCorrect,attempts,answer}) {
       <div className="happy banner">
         <p>
           <strong>Congratulations!</strong> Got it in 
-          <strong>{attempts} guesses</strong>
+          <strong> {attempts} guesses</strong>
         </p>
       </div>
     );
