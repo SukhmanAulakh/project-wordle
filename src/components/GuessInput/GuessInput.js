@@ -8,7 +8,7 @@ async function checkWord(word){
     word =word.toLowerCase()
   }
 
-  url= ENDPOINT+word
+  const url= ENDPOINT+word
 
   const response = await fetch(url,{
     method: 'GET'
