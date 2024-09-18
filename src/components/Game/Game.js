@@ -9,7 +9,7 @@ import Banner from '../Banner/Banner';
 import NewWordButton from '../NewWordButton';
 
 // Retrieve Word From Backend
-const ENDPOINT = "http://127.0.0.1:5000/word"
+const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word"
 
 async function generateWord(endpoint){
 

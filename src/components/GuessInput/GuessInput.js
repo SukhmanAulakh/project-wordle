@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ENDPOINT = "http://127.0.0.1:5000/word?word="
+const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word?word="
 
 async function checkWord(endpoint,word){
 
