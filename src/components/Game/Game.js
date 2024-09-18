@@ -9,7 +9,7 @@ import Banner from '../Banner/Banner';
 import NewWordButton from '../NewWordButton';
 
 // Retrieve Word From Backend
-const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word"
+const ENDPOINT = "http://127.0.0.1:5000/word"
 
 async function generateWord(endpoint){
 
@@ -19,16 +19,8 @@ async function generateWord(endpoint){
   const json = await response.json()
   return (json)
 }
-const genWord= (generateWord(ENDPOINT))
-if(genWord=="fulfilled"){
 
-}
-console.log(genWord)
-
-const falseanswer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-console.info({falseanswer});
-
+// Crteate Empty Array to init guesses state var
 function emptyGuessesArr()
 {
   let arr = []

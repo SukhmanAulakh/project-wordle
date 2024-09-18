@@ -1,24 +1,70 @@
 import React from 'react';
 
+const ENDPOINT = "http://127.0.0.1:5000/word?word="
+
+async function checkWord(endpoint,word){
+
+  if (typeof(word)=="string"){
+    word =word.toLowerCase()
+  }
+
+  url = endpoint+word
+
+  const response = await fetch(url,{
+    method: 'GET'
+  })
+  const json = await response.json()
+  return (json)
+}
+
+
 function GuessInput({answer,handleAddGuess,isCorrect,setIsCorrect}) {
 
   const [guess,setGuess] = React.useState('')
+  const [isValidWord,setIsValidWord] = React.useState(false)
+
+  React.useEffect(() => {
+    async function fetchWord(word) {
+      const valid = await checkWord(ENDPOINT,word);
+      if(valid.found==="True"){
+        setIsValidWord("Valid")
+        handleAddGuess(word);
+        setGuess('') //Reset Guess if Still Have More Attempts and Not correct
+        console.log(valid,"found")
+      }
+      else
+      {
+        setIsValidWord("Empty")
+      }
+
+    }
+    if(isValidWord==="Check"){
+      fetchWord(guess)
+    }
+    return(console.log("completed"))
+  }, [isValidWord]);
 
   return (
       <form className="guess-input-wrapper"
         onSubmit={(event) => {
           event.preventDefault();
-
           const finalizedGuess = guess;
 
         if(finalizedGuess.length==5){
+
+          setIsValidWord("Check")
+
           if(finalizedGuess===answer){
             setIsCorrect(true);
+            handleAddGuess(finalizedGuess);
             console.log("guess input says you are correct!")
           }
-          console.log("guess input says you are wrong!")
-          handleAddGuess(finalizedGuess);
-          setGuess('') //Reset Guess if Still Need More Attempts
+          if(isValidWord=="Valid"){
+            console.log("guess input says you are wrong!")
+            handleAddGuess(finalizedGuess);
+            setGuess('') //Reset Guess if Still Have More Attempts and Not correct
+            setIsValidWord("Empty")
+          }
         }
       }}>
         <label htmlFor="guess-input">

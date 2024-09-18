@@ -27262,14 +27262,7 @@ async function generateWord(endpoint) {
     const json = await response.json();
     return json;
 }
-const genWord = generateWord(ENDPOINT);
-genWord;
-console.log(genWord);
-const falseanswer = (0, _utils.sample)((0, _data.WORDS));
-// To make debugging easier, we'll log the solution in the console.
-console.info({
-    falseanswer
-});
+// Crteate Empty Array to init guesses state var
 function emptyGuessesArr() {
     let arr = [];
     for(let row = 0; row < (0, _constants.NUM_OF_GUESSES_ALLOWED); row++){
@@ -27315,7 +27308,7 @@ function Game() {
                 children: "Generate New Word!"
             }, void 0, false, {
                 fileName: "src/components/Game/Game.js",
-                lineNumber: 97,
+                lineNumber: 89,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _guessListDefault.default), {
@@ -27323,7 +27316,7 @@ function Game() {
                 answer: answer
             }, void 0, false, {
                 fileName: "src/components/Game/Game.js",
-                lineNumber: 99,
+                lineNumber: 91,
                 columnNumber: 5
             }, this),
             !isCorrect && !isGameOver && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _guessInputDefault.default), {
@@ -27333,7 +27326,7 @@ function Game() {
                 setIsCorrect: setIsCorrect
             }, void 0, false, {
                 fileName: "src/components/Game/Game.js",
-                lineNumber: 101,
+                lineNumber: 93,
                 columnNumber: 5
             }, this),
             (isCorrect || isGameOver) && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bannerDefault.default), {
@@ -27342,7 +27335,7 @@ function Game() {
                 answer: answer
             }, void 0, false, {
                 fileName: "src/components/Game/Game.js",
-                lineNumber: 104,
+                lineNumber: 96,
                 columnNumber: 5
             }, this)
         ]
@@ -27483,23 +27476,55 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _s = $RefreshSig$();
+const ENDPOINT = "http://127.0.0.1:5000/word?word=";
+async function checkWord(endpoint, word) {
+    if (typeof word == "string") word = word.toLowerCase();
+    url = endpoint + word;
+    const response = await fetch(url, {
+        method: "GET"
+    });
+    const json = await response.json();
+    return json;
+}
 function GuessInput({ answer, handleAddGuess, isCorrect, setIsCorrect }) {
     _s();
     const [guess, setGuess] = (0, _reactDefault.default).useState("");
+    const [isValidWord, setIsValidWord] = (0, _reactDefault.default).useState(false);
+    (0, _reactDefault.default).useEffect(()=>{
+        async function fetchWord(word) {
+            const valid = await checkWord(ENDPOINT, word);
+            if (valid.found === "True") {
+                setIsValidWord("Valid");
+                handleAddGuess(word);
+                setGuess("") //Reset Guess if Still Have More Attempts and Not correct
+                ;
+                console.log(valid, "found");
+            } else setIsValidWord("Empty");
+        }
+        if (isValidWord === "Check") fetchWord(guess);
+        return console.log("completed");
+    }, [
+        isValidWord
+    ]);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
         className: "guess-input-wrapper",
         onSubmit: (event)=>{
             event.preventDefault();
             const finalizedGuess = guess;
             if (finalizedGuess.length == 5) {
+                setIsValidWord("Check");
                 if (finalizedGuess === answer) {
                     setIsCorrect(true);
+                    handleAddGuess(finalizedGuess);
                     console.log("guess input says you are correct!");
                 }
-                console.log("guess input says you are wrong!");
-                handleAddGuess(finalizedGuess);
-                setGuess("") //Reset Guess if Still Need More Attempts
-                ;
+                if (isValidWord == "Valid") {
+                    console.log("guess input says you are wrong!");
+                    handleAddGuess(finalizedGuess);
+                    setGuess("") //Reset Guess if Still Have More Attempts and Not correct
+                    ;
+                    setIsValidWord("Empty");
+                }
             }
         },
         children: [
@@ -27508,7 +27533,7 @@ function GuessInput({ answer, handleAddGuess, isCorrect, setIsCorrect }) {
                 children: "Enter Guess:"
             }, void 0, false, {
                 fileName: "src/components/GuessInput/GuessInput.js",
-                lineNumber: 24,
+                lineNumber: 70,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -27520,17 +27545,17 @@ function GuessInput({ answer, handleAddGuess, isCorrect, setIsCorrect }) {
                 onChange: (event)=>setGuess(event.target.value.toUpperCase())
             }, void 0, false, {
                 fileName: "src/components/GuessInput/GuessInput.js",
-                lineNumber: 27,
+                lineNumber: 73,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/GuessInput/GuessInput.js",
-        lineNumber: 8,
+        lineNumber: 48,
         columnNumber: 7
     }, this);
 }
-_s(GuessInput, "iTsPt4tgn5JSshJ88ueUwB46YTI=");
+_s(GuessInput, "vugx2c5/CBNo07sVkxtDGDIJEEc=");
 _c = GuessInput;
 exports.default = GuessInput;
 var _c;
@@ -27858,12 +27883,13 @@ function Banner({ isCorrect, attempts, answer }) {
                     lineNumber: 9,
                     columnNumber: 11
                 }, this),
-                " Got it in",
+                " got it in",
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
                     children: [
                         " ",
                         attempts,
-                        " guesses"
+                        " guess",
+                        attempts > 1 && "es"
                     ]
                 }, void 0, true, {
                     fileName: "src/components/Banner/Banner.js",
