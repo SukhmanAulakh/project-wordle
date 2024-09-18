@@ -1,6 +1,7 @@
 import React from 'react';
 import Guess from '../Guess/Guess';
 
+//Displays Guesses Array to DOM
 function GuessList({guesses,answer}) {
 
   return(

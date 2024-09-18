@@ -1,5 +1,6 @@
 import React from 'react';
 
+//Display Name Of Game As Header
 function Header() {
   return (
     <header>

@@ -1,7 +1,4 @@
 import React from 'react';
-
-import { sample } from '../../utils';
-import { WORDS } from '../../data';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 import GuessInput from '../GuessInput/GuessInput';
 import GuessList from '../GuessList/GuessList';
@@ -9,14 +6,17 @@ import Banner from '../Banner/Banner';
 import NewWordButton from '../NewWordButton';
 
 // Retrieve Word From Backend
-const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word"
+async function generateWord(){
 
-async function generateWord(endpoint){
+  const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word"
 
-  const response = await fetch(endpoint,{
+  //Send Request To Backend
+  const response = await fetch(ENDPOINT,{
     method: 'GET'
   })
   const json = await response.json()
+
+  //Return json => {'answer':'answer'}
   return (json)
 }
 
@@ -35,6 +35,7 @@ function emptyGuessesArr()
   return arr;
 }
 
+//Component That Controls Game Logic
 function Game() {
   const [guesses,setGuesses] = React.useState(emptyGuessesArr()); //initialized to 6 beginning
   const [attempts,setAttempts] = React.useState(0); 
@@ -42,26 +43,24 @@ function Game() {
   const [isGameOver,setIsGameOver] = React.useState(false);
   const [answer,setAnswer] = React.useState("");
 
+  //On Mount Retrieve Word From Backend
   React.useEffect(() => {
     async function fetchWord() {
-      const ans = await generateWord(ENDPOINT);
+      const ans = await generateWord();
       setAnswer(ans.answer);
-      console.log(ans.answer);
+      console.log("Answer is "+ans.answer);
     }
     fetchWord()
-    return(console.log("completed"))
   }, []);
 
-  React.useEffect(() => {
-    if(isCorrect){
-      (console.log("woohoo"))
-    }
-  }, [isCorrect]);
-
+  /*Handle Adding Guess:
+    add into guesses array -> update attempts -> check if max attempt reached
+  */
   function handleAddGuess(guess){
     const newGuess= guess;
     var nextGuesses = new Array(6);
 
+    //Add Into nextGuesses Arr
     for (let i = 0; i < NUM_OF_GUESSES_ALLOWED; i++) {
       if(i==attempts)
       {
@@ -73,10 +72,13 @@ function Game() {
       }
     }
 
+    //Update Guesses Array
     setGuesses(nextGuesses);
-    console.log(guesses,attempts);
+
+    //Increase num of Attempt after guess logged
     setAttempts(attempts+1);
 
+    //Check if max attempt reached
     if(attempts>=(NUM_OF_GUESSES_ALLOWED-1))
     {
       setIsGameOver(true)
@@ -88,12 +90,15 @@ function Game() {
     {(isCorrect||isGameOver)&&
       <NewWordButton>Generate New Word!</NewWordButton>
     }
+
     <GuessList guesses={guesses} answer={answer}/>
+    
     {(!isCorrect&&!isGameOver)&&
-    <GuessInput answer={answer} handleAddGuess={handleAddGuess} isCorrect={isCorrect} setIsCorrect={setIsCorrect} />
+      <GuessInput answer={answer} handleAddGuess={handleAddGuess} setIsCorrect={setIsCorrect} />
     }
+    
     {(isCorrect||isGameOver)&&
-    <Banner isCorrect={isCorrect} attempts={attempts} answer={answer}/>
+      <Banner isCorrect={isCorrect} attempts={attempts} answer={answer}/>
     }
   </>
   )

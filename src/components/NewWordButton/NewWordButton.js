@@ -1,5 +1,6 @@
 import React from 'react';
 
+//Button For Reloading The Page After Game End State Has Occured
 function NewWordButton({children}) {
 
   return (

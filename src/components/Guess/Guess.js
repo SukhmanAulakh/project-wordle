@@ -1,7 +1,10 @@
 import React from 'react';
 import { checkGuess } from '/src/game-helpers.js';
 
+//Processes Guess into Specific Row In Guess List
 function Guess({guess,answer}) {
+
+  //Check if Guess has not been given for this row yet
   if(guess==null||typeof guess==="object")
   {
     let emptyStrArr = [];
@@ -21,15 +24,16 @@ function Guess({guess,answer}) {
     </p>
     );
   }
+  //What to do if guess has been provided
   else
   {
+    //Process Guess using function to get arr  then map over arr and return characters according to status
     const guessArr = checkGuess(guess,answer);
     return(
     <p className="guess">
       {guessArr.map((character)=>{
         return(
         <span className={`cell ${character.status}`} key={Math.random()}>
-          {console.log(character.letter,character.status,character)}
           {character.letter}
         </span>
         )

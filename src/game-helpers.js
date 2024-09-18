@@ -12,7 +12,6 @@ export function checkGuess(guess, answer) {
     return null;
   }
 
-  console.log(answer,"game helper")
   const guessChars = guess.toUpperCase().split('');
   const answerChars = answer.split('');
 

@@ -1,13 +1,13 @@
 import React from 'react';
 
-const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word?word="
-
+//Check to See If Guess is A Word in the Backend
 async function checkWord(word){
-
+  
   if (typeof(word)=="string"){
     word =word.toLowerCase()
   }
 
+  const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word?word="
   const url= ENDPOINT+word
 
   const response = await fetch(url,{
@@ -17,31 +17,39 @@ async function checkWord(word){
   return (json)
 }
 
-
+//Handles the Input of Guesses
 function GuessInput({answer,handleAddGuess,setIsCorrect}) {
 
   const [guess,setGuess] = React.useState('')
   const [isValidWord,setIsValidWord] = React.useState("Empty")
 
   React.useEffect(() => {
-    async function fetchWord(word) {
+    async function handleWord(word) {
+      //Check backend
       const valid = await checkWord(word);
+
+      //Check If Word Was Found In Backend
       if(valid.found==="True"){
         setIsValidWord("Valid")
         handleAddGuess(word);
-        setGuess('') //Reset Guess if Still Have More Attempts and Not correct
-        console.log(valid,"found")
+
+        //Reset Guess
+        setGuess('')
       }
       else
       {
+        //Change State Variable to be in an Empty State for Logic
         setIsValidWord("Empty")
       }
 
     }
+
+    //Determine if Word Check Needs To Be Performed
     if(isValidWord==="Check"){
-      fetchWord(guess)
+      handleWord(guess)
     }
-    return(console.log("completed"))
+  
+  //Render on isValidWord State Change
   }, [isValidWord]);
 
   return (

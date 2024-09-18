@@ -27241,8 +27241,6 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _utils = require("../../utils");
-var _data = require("../../data");
 var _constants = require("../../constants");
 var _guessInput = require("../GuessInput/GuessInput");
 var _guessInputDefault = parcelHelpers.interopDefault(_guessInput);
@@ -27254,12 +27252,14 @@ var _newWordButton = require("../NewWordButton");
 var _newWordButtonDefault = parcelHelpers.interopDefault(_newWordButton);
 var _s = $RefreshSig$();
 // Retrieve Word From Backend
-const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word";
-async function generateWord(endpoint) {
-    const response = await fetch(endpoint, {
+async function generateWord() {
+    const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word";
+    //Send Request To Backend
+    const response = await fetch(ENDPOINT, {
         method: "GET"
     });
     const json = await response.json();
+    //Return json => {'answer':'answer'}
     return json;
 }
 // Crteate Empty Array to init guesses state var
@@ -27271,6 +27271,7 @@ function emptyGuessesArr() {
     }
     return arr;
 }
+//Component That Controls Game Logic
 function Game() {
     _s();
     const [guesses, setGuesses] = (0, _reactDefault.default).useState(emptyGuessesArr()); //initialized to 6 beginning
@@ -27278,28 +27279,28 @@ function Game() {
     const [isCorrect, setIsCorrect] = (0, _reactDefault.default).useState(false);
     const [isGameOver, setIsGameOver] = (0, _reactDefault.default).useState(false);
     const [answer, setAnswer] = (0, _reactDefault.default).useState("");
+    //On Mount Retrieve Word From Backend
     (0, _reactDefault.default).useEffect(()=>{
         async function fetchWord() {
-            const ans = await generateWord(ENDPOINT);
+            const ans = await generateWord();
             setAnswer(ans.answer);
-            console.log(ans.answer);
+            console.log("Answer is " + ans.answer);
         }
         fetchWord();
-        return console.log("completed");
     }, []);
-    (0, _reactDefault.default).useEffect(()=>{
-        if (isCorrect) console.log("woohoo");
-    }, [
-        isCorrect
-    ]);
-    function handleAddGuess(guess) {
+    /*Handle Adding Guess:
+    add into guesses array -> update attempts -> check if max attempt reached
+  */ function handleAddGuess(guess) {
         const newGuess = guess;
         var nextGuesses = new Array(6);
+        //Add Into nextGuesses Arr
         for(let i = 0; i < (0, _constants.NUM_OF_GUESSES_ALLOWED); i++)if (i == attempts) nextGuesses[i] = newGuess;
         else nextGuesses[i] = guesses[i];
+        //Update Guesses Array
         setGuesses(nextGuesses);
-        console.log(guesses, attempts);
+        //Increase num of Attempt after guess logged
         setAttempts(attempts + 1);
+        //Check if max attempt reached
         if (attempts >= (0, _constants.NUM_OF_GUESSES_ALLOWED) - 1) setIsGameOver(true);
     }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -27308,7 +27309,7 @@ function Game() {
                 children: "Generate New Word!"
             }, void 0, false, {
                 fileName: "src/components/Game/Game.js",
-                lineNumber: 89,
+                lineNumber: 91,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _guessListDefault.default), {
@@ -27316,18 +27317,17 @@ function Game() {
                 answer: answer
             }, void 0, false, {
                 fileName: "src/components/Game/Game.js",
-                lineNumber: 91,
+                lineNumber: 94,
                 columnNumber: 5
             }, this),
             !isCorrect && !isGameOver && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _guessInputDefault.default), {
                 answer: answer,
                 handleAddGuess: handleAddGuess,
-                isCorrect: isCorrect,
                 setIsCorrect: setIsCorrect
             }, void 0, false, {
                 fileName: "src/components/Game/Game.js",
-                lineNumber: 93,
-                columnNumber: 5
+                lineNumber: 97,
+                columnNumber: 7
             }, this),
             (isCorrect || isGameOver) && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bannerDefault.default), {
                 isCorrect: isCorrect,
@@ -27335,13 +27335,13 @@ function Game() {
                 answer: answer
             }, void 0, false, {
                 fileName: "src/components/Game/Game.js",
-                lineNumber: 96,
-                columnNumber: 5
+                lineNumber: 101,
+                columnNumber: 7
             }, this)
         ]
     }, void 0, true);
 }
-_s(Game, "xXayaAzfLZZFiJO8bjCoecAGADk=");
+_s(Game, "mxVfvEYSTu+ou9N1SrmVTX85miI=");
 _c = Game;
 exports.default = Game;
 var _c;
@@ -27352,23 +27352,11 @@ $RefreshReg$(_c, "Game");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../utils":"en4he","../../data":"9kapS","../../constants":"3huJa","../GuessInput/GuessInput":"bL9cA","../GuessList/GuessList":"bCwgj","../Banner/Banner":"dRLMg","../NewWordButton":"3c354","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"en4he":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../constants":"3huJa","../GuessInput/GuessInput":"bL9cA","../GuessList/GuessList":"bCwgj","../Banner/Banner":"dRLMg","../NewWordButton":"3c354","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"3huJa":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "sample", ()=>sample);
-parcelHelpers.export(exports, "range", ()=>range);
-const sample = (arr)=>{
-    return arr[Math.floor(Math.random() * arr.length)];
-};
-const range = (start, end, step = 1)=>{
-    let output = [];
-    if (typeof end === "undefined") {
-        end = start;
-        start = 0;
-    }
-    for(let i = start; i < end; i += step)output.push(i);
-    return output;
-};
+parcelHelpers.export(exports, "NUM_OF_GUESSES_ALLOWED", ()=>NUM_OF_GUESSES_ALLOWED);
+const NUM_OF_GUESSES_ALLOWED = 6;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -27400,70 +27388,7 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"9kapS":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "WORDS", ()=>WORDS);
-const WORDS = [
-    "AGENT",
-    "WORLD",
-    "ABOUT",
-    "HEART",
-    "WATER",
-    "SIXTY",
-    "BOARD",
-    "MONTH",
-    "MUSIC",
-    "PARTY",
-    "PIANO",
-    "MOUTH",
-    "WOMAN",
-    "SUGAR",
-    "AMBER",
-    "DREAM",
-    "LAUGH",
-    "TIGER",
-    "EARTH",
-    "MONEY",
-    "WORDS",
-    "SMILE",
-    "LEMON",
-    "SOUTH",
-    "AFTER",
-    "STONE",
-    "THING",
-    "LIGHT",
-    "STORY",
-    "POWER",
-    "TODAY",
-    "RANGE",
-    "PEARL",
-    "VENOM",
-    "PROXY",
-    "ROUND",
-    "HOVER",
-    "CANDY",
-    "ABOVE",
-    "PHONE",
-    "OTHER",
-    "SMART",
-    "BLACK",
-    "MAGIC",
-    "FRUIT",
-    "RADIO",
-    "ROYAL",
-    "HONEY",
-    "FLAKE",
-    "SOUND"
-];
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3huJa":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "NUM_OF_GUESSES_ALLOWED", ()=>NUM_OF_GUESSES_ALLOWED);
-const NUM_OF_GUESSES_ALLOWED = 6;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bL9cA":[function(require,module,exports) {
+},{}],"bL9cA":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$b46b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27476,33 +27401,38 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _s = $RefreshSig$();
-const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word?word=";
-async function checkWord(endpoint, word) {
+//Check to See If Guess is A Word in the Backend
+async function checkWord(word) {
     if (typeof word == "string") word = word.toLowerCase();
-    url = endpoint + word;
+    const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word?word=";
+    const url = ENDPOINT + word;
     const response = await fetch(url, {
         method: "GET"
     });
     const json = await response.json();
     return json;
 }
-function GuessInput({ answer, handleAddGuess, isCorrect, setIsCorrect }) {
+//Handles the Input of Guesses
+function GuessInput({ answer, handleAddGuess, setIsCorrect }) {
     _s();
     const [guess, setGuess] = (0, _reactDefault.default).useState("");
-    const [isValidWord, setIsValidWord] = (0, _reactDefault.default).useState("Check");
+    const [isValidWord, setIsValidWord] = (0, _reactDefault.default).useState("Empty");
     (0, _reactDefault.default).useEffect(()=>{
-        async function fetchWord(word) {
-            const valid = await checkWord(ENDPOINT, word);
+        async function handleWord(word) {
+            //Check backend
+            const valid = await checkWord(word);
+            //Check If Word Was Found In Backend
             if (valid.found === "True") {
                 setIsValidWord("Valid");
                 handleAddGuess(word);
-                setGuess("") //Reset Guess if Still Have More Attempts and Not correct
-                ;
-                console.log(valid, "found");
-            } else setIsValidWord("Empty");
+                //Reset Guess
+                setGuess("");
+            } else //Change State Variable to be in an Empty State for Logic
+            setIsValidWord("Empty");
         }
-        if (isValidWord === "Check") fetchWord(guess);
-        return console.log("completed");
+        //Determine if Word Check Needs To Be Performed
+        if (isValidWord === "Check") handleWord(guess);
+    //Render on isValidWord State Change
     }, [
         isValidWord
     ]);
@@ -27533,7 +27463,7 @@ function GuessInput({ answer, handleAddGuess, isCorrect, setIsCorrect }) {
                 children: "Enter Guess:"
             }, void 0, false, {
                 fileName: "src/components/GuessInput/GuessInput.js",
-                lineNumber: 70,
+                lineNumber: 78,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -27545,17 +27475,17 @@ function GuessInput({ answer, handleAddGuess, isCorrect, setIsCorrect }) {
                 onChange: (event)=>setGuess(event.target.value.toUpperCase())
             }, void 0, false, {
                 fileName: "src/components/GuessInput/GuessInput.js",
-                lineNumber: 73,
+                lineNumber: 81,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/GuessInput/GuessInput.js",
-        lineNumber: 48,
+        lineNumber: 56,
         columnNumber: 7
     }, this);
 }
-_s(GuessInput, "sVU9Tj8WbhmdTyes5cDggMJFhpA=");
+_s(GuessInput, "0fluKp8fxdCV1Qg0JRJloEFlAZ4=");
 _c = GuessInput;
 exports.default = GuessInput;
 var _c;
@@ -27718,6 +27648,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _guess = require("../Guess/Guess");
 var _guessDefault = parcelHelpers.interopDefault(_guess);
+//Displays Guesses Array to DOM
 function GuessList({ guesses, answer }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "guess-results",
@@ -27728,13 +27659,13 @@ function GuessList({ guesses, answer }) {
                 answer: answer
             }, Math.random(), false, {
                 fileName: "src/components/GuessList/GuessList.js",
-                lineNumber: 10,
+                lineNumber: 11,
                 columnNumber: 9
             }, this);
         })
     }, void 0, false, {
         fileName: "src/components/GuessList/GuessList.js",
-        lineNumber: 7,
+        lineNumber: 8,
         columnNumber: 5
     }, this);
 }
@@ -27761,7 +27692,9 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _gameHelpersJs = require("/src/game-helpers.js");
+//Processes Guess into Specific Row In Guess List
 function Guess({ guess, answer }) {
+    //Check if Guess has not been given for this row yet
     if (guess == null || typeof guess === "object") {
         let emptyStrArr = [];
         for(let i = 0; i < 5; i++)emptyStrArr[i] = " ";
@@ -27773,35 +27706,33 @@ function Guess({ guess, answer }) {
                     children: letter
                 }, Math.random(), false, {
                     fileName: "src/components/Guess/Guess.js",
-                    lineNumber: 16,
+                    lineNumber: 19,
                     columnNumber: 9
                 }, this);
             })
         }, void 0, false, {
             fileName: "src/components/Guess/Guess.js",
-            lineNumber: 13,
+            lineNumber: 16,
             columnNumber: 5
         }, this);
     } else {
+        //Process Guess using function to get arr  then map over arr and return characters according to status
         const guessArr = (0, _gameHelpersJs.checkGuess)(guess, answer);
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
             className: "guess",
             children: guessArr.map((character)=>{
                 return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                     className: `cell ${character.status}`,
-                    children: [
-                        console.log(character.letter, character.status, character),
-                        character.letter
-                    ]
-                }, Math.random(), true, {
+                    children: character.letter
+                }, Math.random(), false, {
                     fileName: "src/components/Guess/Guess.js",
-                    lineNumber: 31,
+                    lineNumber: 36,
                     columnNumber: 9
                 }, this);
             })
         }, void 0, false, {
             fileName: "src/components/Guess/Guess.js",
-            lineNumber: 28,
+            lineNumber: 33,
             columnNumber: 5
         }, this);
     }
@@ -27828,7 +27759,6 @@ function checkGuess(guess, answer) {
     // dealt with this character (it's correct, or misplaced).
     const SOLVED_CHAR = "\u2713";
     if (!guess) return null;
-    console.log(answer, "game helper");
     const guessChars = guess.toUpperCase().split("");
     const answerChars = answer.split("");
     const result = [];
@@ -27872,7 +27802,9 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 function Banner({ isCorrect, attempts, answer }) {
-    if (isCorrect) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+    //Check if word has been found after attempts exhausted
+    if (isCorrect) //Show happy banner if word found
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "happy banner",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
             children: [
@@ -27880,7 +27812,7 @@ function Banner({ isCorrect, attempts, answer }) {
                     children: "Congratulations!"
                 }, void 0, false, {
                     fileName: "src/components/Banner/Banner.js",
-                    lineNumber: 9,
+                    lineNumber: 11,
                     columnNumber: 11
                 }, this),
                 " got it in",
@@ -27893,21 +27825,22 @@ function Banner({ isCorrect, attempts, answer }) {
                     ]
                 }, void 0, true, {
                     fileName: "src/components/Banner/Banner.js",
-                    lineNumber: 10,
+                    lineNumber: 12,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/Banner/Banner.js",
-            lineNumber: 8,
+            lineNumber: 10,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "src/components/Banner/Banner.js",
-        lineNumber: 7,
+        lineNumber: 9,
         columnNumber: 7
     }, this);
-    else return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+    else //Show sad banner if word not guessed
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "sad banner",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
             children: [
@@ -27916,19 +27849,19 @@ function Banner({ isCorrect, attempts, answer }) {
                     children: answer
                 }, void 0, false, {
                     fileName: "src/components/Banner/Banner.js",
-                    lineNumber: 18,
+                    lineNumber: 21,
                     columnNumber: 41
                 }, this),
                 "."
             ]
         }, void 0, true, {
             fileName: "src/components/Banner/Banner.js",
-            lineNumber: 18,
+            lineNumber: 21,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "src/components/Banner/Banner.js",
-        lineNumber: 17,
+        lineNumber: 20,
         columnNumber: 7
     }, this);
 }
@@ -27962,6 +27895,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+//Button For Reloading The Page After Game End State Has Occured
 function NewWordButton({ children }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
         className: "button",
@@ -27973,7 +27907,7 @@ function NewWordButton({ children }) {
         children: children
     }, void 0, false, {
         fileName: "src/components/NewWordButton/NewWordButton.js",
-        lineNumber: 6,
+        lineNumber: 7,
         columnNumber: 5
     }, this);
 }
@@ -28007,18 +27941,19 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+//Display Name Of Game As Header
 function Header() {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("header", {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
             children: "Word Game"
         }, void 0, false, {
             fileName: "src/components/Header/Header.js",
-            lineNumber: 6,
+            lineNumber: 7,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/components/Header/Header.js",
-        lineNumber: 5,
+        lineNumber: 6,
         columnNumber: 5
     }, this);
 }
