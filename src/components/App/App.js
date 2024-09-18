@@ -6,7 +6,6 @@ function App() {
   return (
     <div className="wrapper">
       <Header />
-      <Toaster />
       <div className="game-wrapper">
         <Game />
       </div>

@@ -27192,21 +27192,16 @@ function App() {
                 lineNumber: 8,
                 columnNumber: 7
             }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactHotToast.Toaster), {}, void 0, false, {
-                fileName: "src/components/App/App.js",
-                lineNumber: 9,
-                columnNumber: 7
-            }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "game-wrapper",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _gameDefault.default), {}, void 0, false, {
                     fileName: "src/components/App/App.js",
-                    lineNumber: 11,
+                    lineNumber: 10,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/App/App.js",
-                lineNumber: 10,
+                lineNumber: 9,
                 columnNumber: 7
             }, this)
         ]
@@ -27432,12 +27427,14 @@ function GuessInput({ answer, handleAddGuess, setIsCorrect }) {
             if (valid.found === "True") {
                 setIsValidWord("Valid");
                 handleAddGuess(word);
-                (0, _reactHotToastDefault.default).success("Keep Guessing!");
                 //Reset Guess
                 setGuess("");
             } else {
                 //Change State Variable to be in an Empty State for Logic
-                (0, _reactHotToastDefault.default).error("Invalid Word!");
+                (0, _reactHotToastDefault.default).error("Invalid Word!", {
+                    duration: 2000,
+                    position: "bottom-center"
+                });
                 setIsValidWord("Empty");
             }
         }
@@ -27458,20 +27455,20 @@ function GuessInput({ answer, handleAddGuess, setIsCorrect }) {
                     setIsCorrect(true);
                     handleAddGuess(finalizedGuess);
                 }
-                if (isValidWord == "Valid") {
-                    handleAddGuess(finalizedGuess);
-                    setGuess("") //Reset Guess if Still Have More Attempts and Not correct
-                    ;
-                }
             }
         },
         children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactHotToast.Toaster), {}, void 0, false, {
+                fileName: "src/components/GuessInput/GuessInput.js",
+                lineNumber: 76,
+                columnNumber: 7
+            }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                 htmlFor: "guess-input",
                 children: "Enter Guess:"
             }, void 0, false, {
                 fileName: "src/components/GuessInput/GuessInput.js",
-                lineNumber: 80,
+                lineNumber: 77,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -27483,13 +27480,13 @@ function GuessInput({ answer, handleAddGuess, setIsCorrect }) {
                 onChange: (event)=>setGuess(event.target.value.toUpperCase())
             }, void 0, false, {
                 fileName: "src/components/GuessInput/GuessInput.js",
-                lineNumber: 84,
+                lineNumber: 81,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/GuessInput/GuessInput.js",
-        lineNumber: 59,
+        lineNumber: 61,
         columnNumber: 5
     }, this);
 }
