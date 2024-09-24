@@ -8,7 +8,7 @@ import NewWordButton from '../NewWordButton';
 // Retrieve Word From Backend
 async function generateWord(){
 
-  const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word"
+  const ENDPOINT = "https://project-wordle-backend-deploy-d85359ff2723.herokuapp.com/word"
 
   //Send Request To Backend
   const response = await fetch(ENDPOINT,{

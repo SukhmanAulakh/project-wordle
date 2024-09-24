@@ -8,7 +8,7 @@ async function checkWord(word){
     word =word.toLowerCase()
   }
 
-  const ENDPOINT = "https://project-wordle-backend-deploy-e330c50ddfb0.herokuapp.com/word?word="
+  const ENDPOINT = "https://project-wordle-backend-deploy-d85359ff2723.herokuapp.com/word?word="
   const url= ENDPOINT+word
 
   const response = await fetch(url,{
